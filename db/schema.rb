@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_14_024735) do
+ActiveRecord::Schema.define(version: 2018_07_14_034233) do
+
+  create_table "review_tags", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id", "tag_id"], name: "index_review_tags_on_review_id_and_tag_id", unique: true
+    t.index ["review_id"], name: "index_review_tags_on_review_id"
+    t.index ["tag_id"], name: "index_review_tags_on_tag_id"
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.string "name"
@@ -25,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_07_14_024735) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
