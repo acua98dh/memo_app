@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :名前 %>
     <%= form.text_field :name %>
   </div>
 
@@ -22,16 +22,16 @@
   </div>
 
   <div class="field">
-    <%= form.label :review %>
+    <%= form.label :メモ %>
     <%= form.text_field :review %>
   </div>
 
   <div class="field">
-    <%= form.label :freq %>
-    <%= form.text_field :freq %>
+    <%= form.label :頻度 %>
+    <%= form.select :freq, [["いつでも", "every time"], ["毎日", "daily"], ["週一", "weekly"],["月一", "monthly"],["年一", "yearly"]] %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :投稿する ,class: "btn btn-primary"%>
   </div>
 <% end %>
