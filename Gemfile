@@ -37,6 +37,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap',    '4.1.1'
 gem 'devise',       '4.4.3'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
+
 
 
 

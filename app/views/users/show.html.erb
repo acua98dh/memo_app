@@ -1,11 +1,16 @@
 <% provide(:title, @user.name) %>
+<h1><%= @user.name %></h1>
 <div class="row">
-  <aside class="col-md-4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+  <div class="col-lg-4">
+  <span>後ほどリンクか何かをつける users->show</span>
+  </div>
+  <div class="col-lg-8">
+    <% if @user.reviews.any? %>
+      <h3>レビュー (<%= @user.reviews.count %>)</h3>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+      <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+    <% end %>
+  </div>
 </div>
