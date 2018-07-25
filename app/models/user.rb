@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true
-  self.primary_key = "user_id"
+  # self.primary_key = "user_id"
   validates :name,  presence: true, length: { maximum: 50 }
 end
