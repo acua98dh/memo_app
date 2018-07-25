@@ -4,9 +4,17 @@
     <nav>
       <ul class="navbar-nav mr-auto">
         <%= link_to "Home", root_path, :class => 'nav-link' %>
-        <%= link_to "Sign in", '#', :class => 'nav-link' %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link' %>
+        <% if signed_in? %>
+          <%= link_to "Users", '#', :class => 'nav-link' %>
+          <%= link_to "Profile", current_user, :class => 'nav-link' %>
+          <%= link_to "Settings", '#', :class => 'nav-link' %>
+          <%= link_to "Sign out", destroy_user_session_path, method: "delete", :class => 'nav-link' %>
+        <% else %>
+          <%= link_to "Sign in", '#', :class => 'nav-link' %>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link' %>
+        <% end %>
       </ul>
     </nav>
   </div>
 </header>
+
