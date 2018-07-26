@@ -1,0 +1,36 @@
+<%= form_for(@review) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label "名前" %>
+    <%= f.text_field :name,class: "form-control" %>
+  </div>
+
+  <div class="form-group filed" id="star">
+    <%= f.label :rating %><br>
+    <%= f.hidden_field :rating, id: "review-rating",class: "form-control" %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label "メモ" %>
+    <%= f.text_area :review, placeholder:"125文字以内",class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "頻度" %>
+    <%= f.select :freq, [["いつでも", "every time"], ["毎日", "daily"], ["週一", "weekly"],["月一", "monthly"],["年一", "yearly"]],class: "form-control" %>
+  </div>
+
+  <%= f.submit "投稿", class: "btn btn-lg btn-primary" %>
+<% end %>
+
+<script>
+  $('#star').raty({
+    size     : 20,
+    path: '/assets/',
+    click: function(score, e) {
+      $("#book_rating").val(score)
+    }
+  });
+</script>

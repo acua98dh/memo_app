@@ -1,7 +1,22 @@
 <% provide(:title, 'Home') %>
-<div class="center">
-    <h1>Memo_app</h1>
-    <p>このアプリケーションは経験の重複を防ぎ、<br>また、過去の評価を提供します。</p>
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-outline-primary badge-pill padding_btn" %>
+
+<% if signed_in? %>
+  <div class="row">
+    <aside class="col-lg-4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/review_form' %>
+      </section>
+    </aside>
+  </div>
+
+<% else %>
+    <div class="center">
+        <h1>Memo_app</h1>
+        <p>このアプリケーションは経験の重複を防ぎ、<br>また、過去の評価を提供します。</p>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-outline-primary badge-pill padding_btn" %>
     <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-outline-success badge-pill padding_btn" %>
-</div>
+    </div>
+<% end %>

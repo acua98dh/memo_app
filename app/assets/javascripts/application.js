@@ -10,7 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//
+// Use Raty is star rating
+//
+//= require jquery
+//= require jquery.raty
+//
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
