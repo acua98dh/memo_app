@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_14_034233) do
+ActiveRecord::Schema.define(version: 2018_07_26_073938) do
 
   create_table "review_tags", force: :cascade do |t|
     t.integer "review_id"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2018_07_14_034233) do
     t.string "freq"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["created_at"], name: "index_reviews_on_created_at"
   end
 
   create_table "tags", force: :cascade do |t|
