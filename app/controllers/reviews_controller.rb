@@ -1,6 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user,   only: :destroy
+  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :correct_user,   only: [:edit, :update, :destroy]
+
 #  before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews
@@ -47,17 +49,18 @@ class ReviewsController < ApplicationController
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
-#  def update
-#    respond_to do |format|
-#      if @review.update(review_params)
+  def update
+    if @review.update(review_params)
+      redirect_to :root
 #        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-#        format.json { render :show, status: :ok, location: @review }
-#      else
-#        format.html { render :edit }
-#        format.json { render json: @review.errors, status: :unprocessable_entity }
-#      end
-#    end
-#  end
+#        format.json { render :root, status: :ok, location: @review }
+    else
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json
@@ -85,4 +88,14 @@ class ReviewsController < ApplicationController
       @review = current_user.reviews.find_by(id: params[:id])
       redirect_to root_url if @review.nil?
     end
+    
+    def review_update_params
+      params.require(:review).permit(:name, :rating, :review, :freq)
+    end
+    
+    def correct_user
+      @user = User.find(@review.user_id)
+      redirect_to(root_url) unless @user == current_user
+    end
+
 end

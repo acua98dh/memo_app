@@ -1,6 +1,51 @@
 <h1>Editing Review</h1>
 
-<%= render 'form', review: @review %>
+<%= form_for(@review) do |f| %>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
 
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <div class="form-group">
+        <%= f.label "名前", class: "col-form-label" %><br />
+        <%= f.text_field :name,  class: "form-control" %>
+      </div>
+    
+      <div class="form-group filed" id="edit_star">
+        <%= f.label :rating %><br>
+        <%= f.hidden_field :rating, id: "edit-review-rating",class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label "メモ", class: "col-form-label" %>
+        <%= f.text_area :review,placeholder:"125文字以内",  class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label "頻度", class: "col-form-label" %>
+        <%= f.select :freq, [["いつでも", "every time"], ["毎日", "daily"], ["週一", "weekly"],["月一", "monthly"],["年一", "yearly"]], class: "form-control" %>
+      </div>
+
+      <%= f.submit "レビューの更新", class: "btn btn-lg btn-primary" %>
+
+    </div>
+  </div>
+
+<% end %>
+
+<div class="row">
+  <div class="col-lg-3 offset-lg-3">
+    <%= link_to "戻る", :back %>
+  </div>
+</div>
+
+<script>
+  $('#edit_star').raty({
+    size     : 20,
+    path     : '/assets/',
+    score    : <%= @review.rating %>,
+    click: function(score, e) {
+      $("#edit-review-rating").val(score)
+    }
+  });
+</script>

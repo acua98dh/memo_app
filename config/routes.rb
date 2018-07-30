@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :tags
   resources :reviews
   root 'static_pages#home'
+  match '/sign_in',    to: 'devise/sessions#new',    via: 'get'
+  match '/sign_up',   to: 'registrations#new',   via: 'get'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
