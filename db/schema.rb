@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_26_073938) do
+ActiveRecord::Schema.define(version: 2018_08_01_135534) do
 
   create_table "review_tags", force: :cascade do |t|
     t.integer "review_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2018_07_26_073938) do
     t.datetime "updated_at", null: false
     t.integer "userid"
     t.string "name"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
