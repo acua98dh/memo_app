@@ -15,6 +15,7 @@
 //
 //= require jquery
 //= require jquery.raty
+//= require bootstrap-tagsinput.min
 //
 //= require rails-ujs
 //= require activestorage
