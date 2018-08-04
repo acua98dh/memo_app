@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_01_135534) do
-
-  create_table "review_tags", force: :cascade do |t|
-    t.integer "review_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["review_id", "tag_id"], name: "index_review_tags_on_review_id_and_tag_id", unique: true
-    t.index ["review_id"], name: "index_review_tags_on_review_id"
-    t.index ["tag_id"], name: "index_review_tags_on_tag_id"
-  end
+ActiveRecord::Schema.define(version: 2018_08_04_014157) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "name"
@@ -31,6 +21,11 @@ ActiveRecord::Schema.define(version: 2018_08_01_135534) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["created_at"], name: "index_reviews_on_created_at"
+  end
+
+  create_table "reviews_tags", id: false, force: :cascade do |t|
+    t.integer "review_id", null: false
+    t.integer "tag_id", null: false
   end
 
   create_table "tags", force: :cascade do |t|
