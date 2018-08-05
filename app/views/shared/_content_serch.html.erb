@@ -1,0 +1,10 @@
+<br>
+<%= form_tag root_path, :method => 'get',:class => "input-group mb-3" do %>
+    <div>
+    <%= text_field_tag :search, params[:search],:class => "form-control",
+    :aria_describedby => "button-addon col-lg-3",:placeholder => "レビュー名 or 内容" %>
+    </div>
+    <div class="input-group-append">
+        <%= submit_tag "Search", :name => nil,:class => "form-control btn-outline-secondary",:id =>"button-addon" %>
+    </div>
+<% end %> 

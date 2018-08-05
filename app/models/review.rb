@@ -39,6 +39,14 @@ class Review < ApplicationRecord
       post_tag = Tag.find_or_create_by(name:new_name)
       self.tags << post_tag
     end
-  end    
+  end  
+  
+  def self.search(search) 
+    if search #検索してる
+      where(['name LIKE ?', "%#{search}%"]).or(where(['review LIKE ?', "%#{search}%"]))
+    else #検索してない
+      all
+    end
+  end
     
 end
