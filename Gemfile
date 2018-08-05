@@ -4,8 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'rails', '~> 5.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -37,18 +35,19 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap',    '4.1.1'
 gem 'devise',       '4.4.3'
-gem 'will_paginate'
-gem 'will_paginate-bootstrap'
-gem 'jquery-rails'
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'dotenv-rails'
+gem 'will_paginate','3.1.6'
+gem 'will_paginate-bootstrap','1.0.1'
+gem 'jquery-rails', '4.3.3'
+gem 'omniauth',     '1.8.1'
+gem 'omniauth-github','1.3.0'
+gem 'dotenv-rails', '2.5.0'
 
 
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'pry-doc'
@@ -73,5 +72,6 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+group :production do
+  gem 'pg',             '1.0.0'
+end
