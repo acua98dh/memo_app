@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   match '/sign_in',    to: 'devise/sessions#new',    via: 'get'
   match '/sign_up',   to: 'registrations#new',   via: 'get'
-  get 'users/show'
 
   devise_for :users, :controllers => {
     :registrations => "registrations",
