@@ -5,6 +5,8 @@ class TagsController < ApplicationController
   # GET /tags.json
   def index
     @tags = Tag.all
+    @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 5).search(params[:search],"tag")
+    @tag_items = current_user.tags
   end
 
   # GET /tags/1

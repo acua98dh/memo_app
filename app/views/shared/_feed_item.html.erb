@@ -8,7 +8,9 @@
   <span class="content">
       <h5><%= feed_item.name %></h5>
       <div id="read_star_<%= feed_item.id %>"></div>
-      <%= render partial: 'shared/feed_tag', collection: feed_item.tags , :locals => { item_tags: feed_item.tags }%><br>
+      <% if feed_item.tags.present? %>
+        <%= render partial: 'shared/feed_tag', collection: feed_item.tags , :locals => { item_tags: feed_item.tags }%><br>
+      <% end %>
       <%= feed_item.review %>
   </span>
   <span class="timestamp">

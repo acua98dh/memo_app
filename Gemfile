@@ -36,7 +36,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap',    '4.1.1'
 gem 'devise',       '4.4.3'
 gem 'will_paginate','3.1.6'
-gem 'will_paginate-bootstrap','1.0.1'
+gem 'will_paginate-bootstrap4','0.2.2'
 gem 'jquery-rails', '4.3.3'
 gem 'omniauth',     '1.8.1'
 gem 'omniauth-github','1.3.0'

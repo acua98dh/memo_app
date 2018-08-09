@@ -1,39 +1,29 @@
 class Review < ApplicationRecord
     belongs_to :user
+    has_and_belongs_to_many :tags
+
     default_scope -> { order('created_at DESC') }
+
     validates :user_id, presence: true
     validates :name, presence: true
-    validates :rating, format: { with: /[1-5]/,message: "値が不正です" }
+    validates :rating, format: { with: /[1-5]/,message: "値が不正です。１〜５の値にしてください。" }
 
-
-    has_and_belongs_to_many :tags
-#    has_many :active_tags, class_name:  "review_tags", foreign_key: "review_id", dependent: :destroy
-#    has_many :tagging, through: :active_tags, source: :tag
-
-    # tagを追加する
-#    def add_tag(something_tag)
-#        active_tags.create(tag_id: something_tag.id)
-#    end
-    # tagを外す
-#    def remove_tag(something_tag)
-#        active_tags.find_by(tag_id: something_tag.id).destroy
-#    end
-    # すでにtagがついてたらtrueを返す
-#    def tagging?(something_tag)
-#        tagging.include?(something_tag)
-#    end    
-
-
- 
   def   save_reviews(savereview_tags)#
     current_tags = Tag.pluck(:name) unless Tag.nil?
-    old_tags = current_tags - savereview_tags
     new_tags = savereview_tags - current_tags
+    old_add_tags = savereview_tags - new_tags
+    old_del_tags = current_tags - savereview_tags
 
-    # Add old tags:
-    old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name:old_name)
+    # old tags:
+    if !self.tags.empty?
+      old_del_tags.each do |old_name|
+        self.tags.delete Tag.find_by(name:old_name)
+      end
     end
+    old_add_tags.each do |old_name|
+      self.tags << Tag.find_by(name:old_name)
+    end
+    
     # Create new tags:
     new_tags.each do |new_name|
       post_tag = Tag.find_or_create_by(name:new_name)
@@ -41,12 +31,17 @@ class Review < ApplicationRecord
     end
   end  
   
-  def self.search(search) 
+  def self.search(search,filing) 
     if search #検索してる
-      where(['name LIKE ?', "%#{search}%"]).or(where(['review LIKE ?', "%#{search}%"]))
+      if filing == "review"
+        where(['name LIKE ?', "%#{search}%"]).or(where(['review LIKE ?', "%#{search}%"]))
+      elsif filing == "tag"
+        joins(:tags).where(['tags.name LIKE ?', "%#{search}%"])
+      end
     else #検索してない
       all
     end
   end
+  
     
 end

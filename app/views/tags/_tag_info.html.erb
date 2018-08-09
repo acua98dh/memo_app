@@ -1,0 +1,13 @@
+<section>
+    <h1>Tags</h1>
+</section>
+
+<section>
+
+    <%= render 'shared/content_search' ,link: tags_path ,message: "タグ名"  %>
+    
+    <h5>Tag List</h5>
+    <%= render partial: 'tags/tag_list', collection: @tag_items.distinct %>
+
+</section>
+

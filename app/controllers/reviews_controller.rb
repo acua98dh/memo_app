@@ -24,6 +24,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1/edit
   def edit
     @current_tags = @review.tags.name
+    @edit_tags = @review.tags.join(',')
   end
 
   # POST /reviews

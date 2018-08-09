@@ -1,0 +1,18 @@
+<section>
+
+  <h1>
+    <%= link_to current_user.name, edit_user_registration_path, :class => 'user-link' %>
+  </h1>
+  <br>
+
+  <span>
+    総レビュー数<%= current_user.reviews.count %>件
+  </span>
+
+  <%= render 'shared/content_search' ,link: root_path ,message: "レビュー名 or 内容" %>
+
+</section>
+
+<section>
+  <%= render 'shared/review_form' %>
+</section>

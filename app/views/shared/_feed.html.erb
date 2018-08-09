@@ -1,6 +1,10 @@
 <% if @feed_items.any? %>
+  <br>
+  <h3>最近のレビュー</h3>
   <ol class="reviews">
     <%= render partial: 'shared/feed_item', collection: @feed_items %>
   </ol>
-  <%= will_paginate @feed_items, renderer: BootstrapPagination::Rails %>
+  <div class="row justify-content-center">
+    <%= will_paginate @feed_items, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
 <% end %>
