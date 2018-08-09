@@ -23,8 +23,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
-    @current_tags = @review.tags.name
-    @edit_tags = @review.tags.join(',')
+    @edit_tags = @review.tags.pluck(:name).join(",")
   end
 
   # POST /reviews
@@ -38,7 +37,7 @@ class ReviewsController < ApplicationController
       redirect_to root_url
       @review.save_reviews(tag_list)
     else
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      @feed_items = current_urailsser.feed.paginate(page: params[:page])
       render 'static_pages/home'
     end
   end
