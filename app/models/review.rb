@@ -21,9 +21,11 @@ class Review < ApplicationRecord
       end
     end
     old_add_tags.each do |old_name|
-      self.tags << Tag.find_by(name:old_name)
+      if !old_add_tags.include?(old_name)
+        self.tags << Tag.find_by(name:old_name)
+      end
     end
-    
+
     # Create new tags:
     new_tags.each do |new_name|
       post_tag = Tag.find_or_create_by(name:new_name)
