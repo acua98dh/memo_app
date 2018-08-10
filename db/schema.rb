@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_04_014157) do
+ActiveRecord::Schema.define(version: 2018_08_10_012635) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_08_04_014157) do
   create_table "reviews_tags", id: false, force: :cascade do |t|
     t.integer "review_id", null: false
     t.integer "tag_id", null: false
+    t.index ["review_id", "tag_id"], name: "index_reviews_tags_on_review_id_and_tag_id", unique: true
   end
 
   create_table "tags", force: :cascade do |t|

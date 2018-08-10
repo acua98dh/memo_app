@@ -7,9 +7,9 @@
     <%= render 'shared/content_search' ,link: tags_path ,message: "タグ名"  %>
     
     <h5>Tag List</h5>
-    <h3>
+    <div class="h3">
         <%= render partial: 'tags/tag_list', collection: @tag_items.distinct %>
-    </h3>
+    </div>
 
 </section>
 
