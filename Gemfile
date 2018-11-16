@@ -33,15 +33,14 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'bootstrap',    '4.1.1'
-gem 'devise',       '4.4.3'
-gem 'will_paginate','3.1.6'
-gem 'will_paginate-bootstrap4','0.2.2'
-gem 'jquery-rails', '4.3.3'
-gem 'omniauth',     '1.8.1'
-gem 'omniauth-github','1.3.0'
-gem 'dotenv-rails', '2.5.0'
-
+gem 'bootstrap',    '~> 4.1.3'
+gem 'devise', '~> 4.4', '>= 4.4.3'
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+gem 'will_paginate-bootstrap4','~> 0.2.2'
+gem 'jquery-rails', '>= 4.3.3'
+gem 'omniauth', '~> 1.8', '>= 1.8.1'
+gem 'omniauth-github', '~> 1.3'
+gem 'dotenv-rails', '~> 2.5'
 
 
 
